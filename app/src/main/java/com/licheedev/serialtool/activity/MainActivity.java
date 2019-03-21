@@ -33,6 +33,8 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
     Button mBtnOpenDevice;
     @BindView(R.id.btn_send_data)
     Button mBtnSendData;
+    @BindView(R.id.btn_loop)
+    Button mBtnLoop;
     @BindView(R.id.btn_load_list)
     Button mBtnLoadList;
     @BindView(R.id.et_data)
@@ -120,7 +122,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
         mSpinnerBaudrate.setSelection(mBaudrateIndex);
     }
 
-    @OnClick({ R.id.btn_open_device, R.id.btn_send_data, R.id.btn_load_list })
+    @OnClick({ R.id.btn_open_device, R.id.btn_send_data, R.id.btn_load_list, R.id.btn_loop })
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_open_device:
@@ -131,6 +133,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
                 break;
             case R.id.btn_load_list:
                 startActivity(new Intent(this, LoadCmdListActivity.class));
+                break;
+            case R.id.btn_loop:
+                startActivity(new Intent(this, LoopActivity.class));
                 break;
         }
     }
@@ -184,6 +189,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
         mSpinnerBaudrate.setEnabled(!isSerialPortOpened);
         mBtnSendData.setEnabled(isSerialPortOpened);
         mBtnLoadList.setEnabled(isSerialPortOpened);
+        mBtnLoop.setEnabled(isSerialPortOpened);
     }
 
     @Override
