@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -50,7 +51,7 @@ public class LoopActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         commands = RecoveryTypeBean.getRecoveryTypeBean();
 
-        executor = Executors.newScheduledThreadPool(1);
+        executor = new ScheduledThreadPoolExecutor(1);
         long oneDay = 1000;
         //启动项目，initialDelay后开始执行程序，然后每过period时间周期性执行。
         //也就是第二次执行是在initialDelay+period执行。第三次执行在initialDelay+2*period执行
@@ -59,8 +60,8 @@ public class LoopActivity extends BaseActivity {
                 new TimeServer(),
                 1,
                 //两次执行行间的间隔（单位为毫秒）
-                oneDay,
-                TimeUnit.MILLISECONDS);
+                1,
+                TimeUnit.SECONDS);
     }
 
     public class TimeServer implements Runnable {
@@ -69,7 +70,7 @@ public class LoopActivity extends BaseActivity {
             LogUtils.i(TAG,"===========TimeServer=============currentTime="+currentTime);
 
             if (currentTime == 0) {
-                if(position>5){
+                if(position>6){
                     position=0;
                 }
                 RecoveryTypeBean item = commands.get(position);

@@ -2,6 +2,7 @@ package com.licheedev.serialtool.comn;
 
 import android.os.HandlerThread;
 import android.serialport.SerialPort;
+import android.util.Log;
 
 import com.licheedev.myutils.LogPlus;
 import com.licheedev.serialtool.comn.message.LogManager;
@@ -109,6 +110,7 @@ public class SerialPortManager {
     }
 
     public void sendNewCommand(String command) {
+        Log.i("YYYY","sendNewCommand command==="+(mWriteThread != null));
         if (mWriteThread != null) {
             mWriteThread.produce(command);
         }

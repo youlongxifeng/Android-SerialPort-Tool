@@ -24,7 +24,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class SerialWriteThread extends Thread {
     private final static String TAG = SerialWriteThread.class.getSimpleName();
-    static BlockingQueue<String> basket = new LinkedBlockingQueue<String>();
+    static LinkedBlockingQueue<String> basket = new LinkedBlockingQueue<String>();
     private boolean iscloseStream;
     OutputStream mOutputStream;
 
@@ -70,17 +70,18 @@ public class SerialWriteThread extends Thread {
         String commandContrast = null;
         try {
 
-            while ((command = basket.take()) != null) {
+            while (basket!=null  ) {
+                command=basket.take() ;
                 Thread.sleep(100);
                 LogUtils.i(TAG, "basket===" + basket.size() + " command=" + command);
                 if (mOutputStream != null) {
-                    if(!command.equalsIgnoreCase(commandContrast)){
+                     //if(!command.equalsIgnoreCase(commandContrast)){
                         commandContrast=command;
                         byte[] bytes = ByteUtil.hexStr2bytes(command);
                         mOutputStream.write(bytes);
                         mOutputStream.flush();
                         LogManager.instance().post(new SendMessage(command));
-                    }
+                     //}
 
                 }
             }

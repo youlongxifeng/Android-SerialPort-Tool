@@ -152,6 +152,7 @@ public class CommunicationInstruction {
         String checkoutBit = FunctionCode.CHECKOUT_BIT;
         LogUtils.i(TAG, "读取容量数据 slaveAddress=" + slaveAddress + "  dataAddress=" + dataAddress + " data=" + data + "  checkoutBit=" + checkoutBit);
         String command = FunctionCode.FRAME_HEAD + slaveAddress + functionCode + dataAddress + data + checkoutBit + FunctionCode.FRAME_TAIL;
+        LogUtils.i(TAG, "读取容量数据 command=" + command);
 
         return command;
     }

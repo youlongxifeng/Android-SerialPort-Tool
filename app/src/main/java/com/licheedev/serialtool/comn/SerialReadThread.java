@@ -1,6 +1,8 @@
 package com.licheedev.serialtool.comn;
 
 import android.os.SystemClock;
+import android.util.Log;
+
 import com.licheedev.myutils.LogPlus;
 import com.licheedev.serialtool.comn.message.LogManager;
 import com.licheedev.serialtool.comn.message.RecvMessage;
@@ -70,6 +72,7 @@ public class SerialReadThread extends Thread {
         // TODO: 2018/3/22 解决粘包、分包等
         String hexStr = ByteUtil.bytes2HexStr(received, 0, size);
         String str3 = new String(received, 0, size);
+        Log.i("YYYY","onDataReceive== str3="+str3);
         LogManager.instance().post(new RecvMessage(str3));
     }
 

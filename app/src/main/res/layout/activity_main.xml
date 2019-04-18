@@ -84,8 +84,9 @@
                 android:id="@+id/et_data"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/default_button_height"
-                android:digits="0123456789abcdefABCDEF"
+                android:digits="AABB002000010007000169CCDD"
                 android:hint="@string/input_data"
+                android:text="AABB000200010007000169CCDD"
                 android:inputType="textCapCharacters"
                 android:singleLine="true"
                 android:textSize="@dimen/edit_text_size" />
