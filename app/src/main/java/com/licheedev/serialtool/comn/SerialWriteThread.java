@@ -75,13 +75,13 @@ public class SerialWriteThread extends Thread {
                 Thread.sleep(100);
                 LogUtils.i(TAG, "basket===" + basket.size() + " command=" + command);
                 if (mOutputStream != null) {
-                     //if(!command.equalsIgnoreCase(commandContrast)){
+                     // if(!command.equalsIgnoreCase(commandContrast)){
                         commandContrast=command;
                         byte[] bytes = ByteUtil.hexStr2bytes(command);
                         mOutputStream.write(bytes);
                         mOutputStream.flush();
                         LogManager.instance().post(new SendMessage(command));
-                     //}
+                      //}
 
                 }
             }

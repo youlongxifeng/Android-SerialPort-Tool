@@ -7,6 +7,7 @@ import com.licheedev.myutils.LogPlus;
 import com.licheedev.serialtool.comn.message.LogManager;
 import com.licheedev.serialtool.comn.message.RecvMessage;
 import com.licheedev.serialtool.util.ByteUtil;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,14 +40,14 @@ public class SerialReadThread extends Thread {
             try {
                 int available = mInputStream.available();
                 if (available > 0) {
-                    bytes=0;
-                    while ((ch=mInputStream.read())!='\n'){
+                    bytes = 0;
+                    while ((ch = mInputStream.read()) != '\n') {
                         //将读取到的字符写入
-                        buffer[bytes]= (byte) ch;
+                        buffer[bytes] = (byte) ch;
                         bytes++;
                     }
                     //最后加上一个换行
-                    buffer[bytes]='\n';
+                    buffer[bytes] = '\n';
                     bytes++;
                     onDataReceive(buffer, bytes);
                 } else {
@@ -55,7 +56,7 @@ public class SerialReadThread extends Thread {
                 }
             } catch (IOException e) {
                 LogPlus.e("读取数据失败", e);
-            }finally {
+            } finally {
                 //   LogPlus.e("finally 结束读进程");
             }
         }
@@ -72,7 +73,8 @@ public class SerialReadThread extends Thread {
         // TODO: 2018/3/22 解决粘包、分包等
         String hexStr = ByteUtil.bytes2HexStr(received, 0, size);
         String str3 = new String(received, 0, size);
-        Log.i("YYYY","onDataReceive== str3="+str3);
+        Log.i("YYYY", " hexStr=" + hexStr);
+        Log.i("YYYY", "onDataReceive== str3=" + str3);
         LogManager.instance().post(new RecvMessage(str3));
     }
 

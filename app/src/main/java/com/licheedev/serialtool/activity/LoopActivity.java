@@ -74,7 +74,7 @@ public class LoopActivity extends BaseActivity {
                     position=0;
                 }
                 RecoveryTypeBean item = commands.get(position);
-                try {
+              /*  try {
                     //开门指令
                     String OpenTheWindow = CommunicationInstruction.sendOpenTheWindow(item);
                     SerialPortManager.instance().sendNewCommand(OpenTheWindow);
@@ -88,7 +88,7 @@ public class LoopActivity extends BaseActivity {
                 SerialPortManager.instance().sendNewCommand(ReadWeighing);
                 //读取容量指令
                 String Readcapacity = CommunicationInstruction.sendReadcapacitydata(item);
-                SerialPortManager.instance().sendNewCommand(Readcapacity);
+                SerialPortManager.instance().sendNewCommand(Readcapacity);*/
 
                 try {
                     Thread.sleep(1000);
